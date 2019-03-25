@@ -23,7 +23,9 @@ void setup() {
   for (int i =0; i<400; i++){
      fill(randomPrimary());
      noStroke();
-     circle(random(1600), random(900), random(250));
+     float w = random(250);
+     ellipse(random(1600), random(900), w, w);
+     
   }
  
  for (int i =0; i<10; i++){
@@ -31,15 +33,24 @@ void setup() {
     filter(BLUR);
  }
 
- for (int x =200; x < 1600; x+= 200){
+ for (int x =0; x < 1600; x+= random(100,200)){
    for (int y = 0; y < 900; y++){
-     int more = int(sin(y/10)*20);
+     float w = random(3);
      //set(x+more, y, color(0,0,0));
      noStroke();
-     fill(0);
-     circle(x+more, y, 4);
+     fill(0,0,0,100);
+     //point(x+sin(y*0.01)*50,y);
+     ellipse(x+sin(y*0.01)*50, y, w,w);
    }
  } 
+ 
+ for (int x = 0; x < 1600; x++){
+   for (int y = 0; y < 900; y++){
+     stroke(0);
+     fill(0,0,0,255);
+     point(x+sin(y*0.01)*50,y+sin(x*0.01)*50);
+   }
+ }
  
 }
 

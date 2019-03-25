@@ -25,18 +25,19 @@ namespace TilledEnginev1._0
         }
         
 
-        public Tile[] GenerateMap()
+        public GameObject[] GenerateMap()
         {
-            Tile[] tiles;
+            GameObject[] tiles;
             int nbTilesX = width / tileSize;
             int nbTilesY = height / tileSize;
-            tiles = new Tile[nbTilesX * nbTilesY];
+            tiles = new GameObject[nbTilesX * nbTilesY];
             for (int x = 0; x < nbTilesX; x++)
             {
                 for (int y = 0; y < nbTilesY; y++)
                 {
                     Tile tile = new Tile(x * tileSize+tileSize/2, y * tileSize + tileSize / 2, tileSize);
-                    tiles[x + (y*nbTilesX)] = tile;
+                    tiles[x + (y * nbTilesX)] = new GameObject("Tile");
+                    tiles[x + (y*nbTilesX)].addComponent(tile);
                 }
             }
 

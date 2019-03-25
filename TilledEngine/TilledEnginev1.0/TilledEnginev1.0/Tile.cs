@@ -9,7 +9,7 @@ namespace TilledEnginev1._0
     /// <summary>
     /// The main class.
     /// </summary>
-    public class Tile
+    public class Tile : Component
     {
         public int posX;
         public int posY;
@@ -46,7 +46,7 @@ namespace TilledEnginev1._0
             return true;
         }
 
-        public void Update()
+        public override void Update()
         {
             MouseState mouse = Mouse.GetState();
             ButtonState leftClic = mouse.LeftButton;
@@ -85,7 +85,7 @@ namespace TilledEnginev1._0
             
         }
 
-        public void Draw()
+        public override void Draw()
         {
             MouseState mouse = Mouse.GetState();
             Vector2 mousePos = new Vector2(mouse.X, mouse.Y);

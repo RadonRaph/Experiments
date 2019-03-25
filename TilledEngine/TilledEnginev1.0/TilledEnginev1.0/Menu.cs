@@ -10,7 +10,7 @@ namespace TilledEnginev1._0
     /// <summary>
     /// The main class.
     /// </summary>
-    public class Menu {
+    public class Menu : Component{
 
         public int posX;
         public int posY;
@@ -31,7 +31,7 @@ namespace TilledEnginev1._0
         }
 
 
-        public void Draw()
+        public override void Draw()
         {
             MouseState mouse = Mouse.GetState();
             for (int i = 0; i < subMenus.Count; i++)

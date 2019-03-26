@@ -18,8 +18,9 @@ namespace TilledEnginev1._0
         public static SpriteBatch batch;
 
         bool isClicked;
+        /*
         bool isMenu;
-        Menu tileMenu;
+        Menu tileMenu;*/
 
         public Tile(int x, int y, int size)
         {
@@ -30,9 +31,9 @@ namespace TilledEnginev1._0
 
             game = Program.game;
             batch = game.spriteBatch;
-
+            /*
             tileMenu = new Menu(x, y);
-            tileMenu.AddSub(Color.IndianRed, "Construire", constructMenu);
+            tileMenu.AddSub(Color.IndianRed, "Construire", constructMenu);*/
             //tileMenu.AddSub(Color.IndianRed, "");
         }
 
@@ -46,41 +47,32 @@ namespace TilledEnginev1._0
             return true;
         }
 
+        public override void OnClick(int clic)
+        {
+            if (clic == 0)
+                isClicked = true;
+            if (clic == 1)
+                isClicked = true;
+        }
+
         public override void Update()
         {
+            
             MouseState mouse = Mouse.GetState();
             ButtonState leftClic = mouse.LeftButton;
             ButtonState rightClic = mouse.RightButton;
 
             if (leftClic == ButtonState.Pressed)
             {
-                Vector2 mousePos = new Vector2(mouse.X, mouse.Y);
-                if (Utils.isIn(mousePos, new Vector2(posX, posY), size))
-                {
-                    isClicked = true;
-                    if (game.menuToDraw == tileMenu)
-                        game.menuToDraw = null;
-                }
-                else
-                {
                     isClicked = false;
-                    if (game.menuToDraw == tileMenu)
-                        game.menuToDraw = null;
-                }
+
             }
 
             if (rightClic == ButtonState.Pressed)
             {
-                Vector2 mousePos = new Vector2(mouse.X, mouse.Y);
-                if (Utils.isIn(mousePos, new Vector2(posX, posY), size))
-                {
-                    isClicked = true;
-                    game.menuToDraw = tileMenu;
-                }
-                else
-                {
+
                     isClicked = false;
-                }
+                
             }
             
         }

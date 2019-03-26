@@ -37,6 +37,7 @@ namespace TilledEnginev1._0
                 {
                     Tile tile = new Tile(x * tileSize+tileSize/2, y * tileSize + tileSize / 2, tileSize);
                     tiles[x + (y * nbTilesX)] = new GameObject("Tile");
+                    tiles[x + (y * nbTilesX)].collider = new RectCollider(tile.posX - tileSize/2, tile.posY - tileSize / 2, tile.posX + tileSize / 2, tile.posY + tileSize / 2);
                     tiles[x + (y*nbTilesX)].addComponent(tile);
                 }
             }

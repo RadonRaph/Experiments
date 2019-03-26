@@ -10,9 +10,12 @@ namespace TilledEnginev1._0
     public class GameObject
     {
         public List<Component> components;
+        public Collider collider = null;
 
         public string name;
         public int orderInLayer;
+
+        public bool active;
 
         public Vector2 position;
 
@@ -37,8 +40,13 @@ namespace TilledEnginev1._0
             {
                 components[i].Update();
 
-                //TODOO ONCLIK AND COLLIDER
-                //if (Mouse.GetState().)
+                if (collider != null)
+                {
+                    if (collider.isClicked(0))
+                        components[i].OnClick(0);
+                    if (collider.isClicked(1))
+                        components[i].OnClick(1);
+                }
             }
         }
 
@@ -54,6 +62,7 @@ namespace TilledEnginev1._0
         public void addComponent(Component component)
         {
             components.Add(component);
+            component.gameObject = this;
         }
 
 

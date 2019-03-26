@@ -10,6 +10,8 @@ namespace TilledEnginev1._0
     public abstract class Component
     {
 
+        public GameObject gameObject;
+
         // Use this for initialization
         public virtual void Start()
         {
@@ -18,6 +20,11 @@ namespace TilledEnginev1._0
 
         // Update is called once per frame
         public virtual void Update()
+        {
+
+        }
+
+        public virtual void OnClick(int clic)
         {
 
         }

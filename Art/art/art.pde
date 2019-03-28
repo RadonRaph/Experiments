@@ -46,8 +46,8 @@ void setup() {
  
  for (int x = 0; x < 1600; x++){
    for (int y = 0; y < 900; y++){
-     stroke(0);
-     fill(0,0,0,255);
+     stroke(randomPrimary());
+     //fill(0,0,0,255);
      point(x+sin(y*0.01)*50,y+sin(x*0.01)*50);
    }
  }

@@ -42,10 +42,13 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="GameObject.cs" />
     <Compile Include="MainGame.cs" />
     <Compile Include="BasicShapes.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="Menu.cs" />
+    <Compile Include="Component.cs" />
+    <Compile Include="Collider.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="Program.cs" />

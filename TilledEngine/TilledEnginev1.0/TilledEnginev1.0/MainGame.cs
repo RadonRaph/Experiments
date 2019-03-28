@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using TilledEnginev1._0;
 using System;
+using System.Collections.Generic;
 
 namespace TilledEnginev1._0
 {
@@ -15,8 +16,9 @@ namespace TilledEnginev1._0
         public SpriteBatch spriteBatch;
         public SpriteFont font;
 
-        Tile[] tiles;
+       // Tile[] tiles;
         Map map;
+        public List<GameObject> gameObjects;
 
         public Menu menuToDraw;
 
@@ -35,6 +37,8 @@ namespace TilledEnginev1._0
             
 
             Content.RootDirectory = "Content";
+
+            gameObjects = new List<GameObject>();
         }
 
         /// <summary>
@@ -66,9 +70,15 @@ namespace TilledEnginev1._0
 
             map = new Map(width, height);
             int tilesLength = map.GenerateMap().Length;
-            tiles = new Tile[tilesLength];
-            tiles = map.GenerateMap();
+            for (int i = 0; i < tilesLength; i++)
+            {
+                gameObjects.Add(map.GenerateMap()[i]);
+            }
 
+            for (int i = 0; i < gameObjects.Count; i++)
+            {
+                gameObjects[i].Start();
+            }
             // TODO: use this.Content to load your game content here
         }
 
@@ -91,9 +101,15 @@ namespace TilledEnginev1._0
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            /*
             for (int i = 0; i < tiles.Length; i++)
             {
                 tiles[i].Update();
+            }*/
+
+            for (int i = 0; i < gameObjects.Count; i++)
+            {
+                gameObjects[i].Update();
             }
 
             // TODO: Add your update logic here
@@ -116,14 +132,19 @@ namespace TilledEnginev1._0
             Console.Write("CERCLE");
             spriteBatch.Draw(BasicShapes.Circle(100), new Vector2(800, 450), Color.Yellow);
             spriteBatch.Draw(BasicShapes.Circle(100, false, 5), new Vector2(1200, 450), Color.Yellow);*/
-            
+            /*
             for (int i = 0; i < tiles.Length; i++)
             {
                 tiles[i].Draw();
             }
 
             if (menuToDraw != null)
-                menuToDraw.Draw();
+                menuToDraw.Draw();*/
+
+            for (int i = 0; i < gameObjects.Count; i++)
+            {
+                gameObjects[i].Draw();
+            }
 
 
             spriteBatch.End();

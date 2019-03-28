@@ -10,7 +10,7 @@ namespace TilledEnginev1._0
     /// <summary>
     /// The main class.
     /// </summary>
-    public class Menu {
+    public class Menu : Component{
 
         public int posX;
         public int posY;
@@ -31,9 +31,11 @@ namespace TilledEnginev1._0
         }
 
 
-        public void Draw()
+        public override void Draw()
         {
             MouseState mouse = Mouse.GetState();
+            posX = mouse.Position.X;
+            posY = mouse.Position.Y;
             for (int i = 0; i < subMenus.Count; i++)
             {
                 batch.Draw(BasicShapes.Rect(300, 75), new Vector2(posX, posY+75*i), subMenus[i].backgroundColor);
@@ -55,7 +57,7 @@ namespace TilledEnginev1._0
             }
         }
 
-        public void AddSub(Color  bg, string title, Func<bool> func = null)
+        public void AddSub(Color  bg, string title, Action<string, bool> func = null)
         {
             subMenus.Add(new SubMenu(bg, title, func));
         }
@@ -67,9 +69,9 @@ namespace TilledEnginev1._0
     {
         public Color backgroundColor;
         public String Text;
-        Func<bool> action;
+        Action<string, bool> action;
 
-        public SubMenu(Color bg, string text, Func<bool> func = null)
+        public SubMenu(Color bg, string text, Action<string, bool> func = null)
         {
             backgroundColor = bg;
             Text = text;
@@ -82,8 +84,35 @@ namespace TilledEnginev1._0
 
             if (action != null)
             action();
+            //EEEEEEEEVEEEEEEEEEEnt
 
             
+        }
+    }
+
+
+
+    public static class HUD
+    {
+        public static void Start()
+        {
+            Menu tileMenu = new Menu(0, 0);
+            Action<string, bool> action = new Action<string, bool>(setActive);
+            SubMenu build = new SubMenu(Color.HotPink, "Constuire", action);
+        }
+
+        
+        public static void setActive(string ObjName, bool activeness)
+        {
+            if (GameObject.Find(ObjName) != null)
+            {
+                GameObject.Find(ObjName).active = activeness;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 

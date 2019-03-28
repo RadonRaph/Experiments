@@ -15,7 +15,7 @@ namespace TilledEnginev1._0
         public string name;
         public int orderInLayer;
 
-        public bool active;
+        public bool active = true;
 
         public Vector2 position;
 
@@ -23,6 +23,7 @@ namespace TilledEnginev1._0
         {
             components = new List<Component>();
             this.name = name;
+           // Program.game.gameObjects.Add(this);
         }
         // Use this for initialization
         public void Start()

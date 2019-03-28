@@ -37,22 +37,16 @@ namespace TilledEnginev1._0
             //tileMenu.AddSub(Color.IndianRed, "");
         }
 
-
-        bool constructMenu()
-        {
-            Menu cstrctMenu = new Menu(posX, posY);
-            cstrctMenu.AddSub(Color.Yellow, "Maison");
-            game.menuToDraw = cstrctMenu;
-
-            return true;
-        }
-
         public override void OnClick(int clic)
         {
             if (clic == 0)
                 isClicked = true;
+
             if (clic == 1)
+            {
                 isClicked = true;
+                GameObject.Find("TileMenu").active = true;
+            }
         }
 
         public override void Update()

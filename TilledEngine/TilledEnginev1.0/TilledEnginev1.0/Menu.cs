@@ -57,9 +57,9 @@ namespace TilledEnginev1._0
             }
         }
 
-        public void AddSub(Color  bg, string title, Action<string, bool> func = null)
+        public void AddSub(Color  bg, string title, Actions[] actions)
         {
-            subMenus.Add(new SubMenu(bg, title, func));
+            subMenus.Add(new SubMenu(bg, title, actions));
         }
         
     }
@@ -69,21 +69,23 @@ namespace TilledEnginev1._0
     {
         public Color backgroundColor;
         public String Text;
-        Action<string, bool> action;
+        Actions[] actions;
 
-        public SubMenu(Color bg, string text, Action<string, bool> func = null)
+        public SubMenu(Color bg, string text, Actions[] fonctions)
         {
             backgroundColor = bg;
             Text = text;
-            action = func;
+            actions = fonctions;
         }
 
         public void onClick()
         {
            Program.game.menuToDraw = null;
 
-            if (action != null)
-            action();
+            for (int i = 0; i < actions.Length; i++)
+            {
+                actions[i].Invoke();
+            }
             //EEEEEEEEVEEEEEEEEEEnt
 
             
@@ -97,23 +99,20 @@ namespace TilledEnginev1._0
         public static void Start()
         {
             Menu tileMenu = new Menu(0, 0);
-            Action<string, bool> action = new Action<string, bool>(setActive);
-            SubMenu build = new SubMenu(Color.HotPink, "Constuire", action);
+            SetActive[] actions = new SetActive[2];
+            actions[0] = new SetActive("BuildMenu", true);
+            actions[1] = new SetActive("TileMenu", false);
+            SubMenu build = new SubMenu(Color.HotPink, "Constuire", actions);
+            GameObject tileMenuObj = new GameObject("TileMenu", 1);
+            tileMenuObj.addComponent(tileMenu);
+
+            tileMenuObj.active = false;
+            Program.game.gameObjects.Add(tileMenuObj);
+            //GAMEOBJECT
         }
 
         
-        public static void setActive(string ObjName, bool activeness)
-        {
-            if (GameObject.Find(ObjName) != null)
-            {
-                GameObject.Find(ObjName).active = activeness;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+        
     }
 
 }

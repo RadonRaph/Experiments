@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using TilledEnginev1._0;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace TilledEnginev1._0
 {
@@ -75,8 +76,12 @@ namespace TilledEnginev1._0
                 gameObjects.Add(map.GenerateMap()[i]);
             }
 
+
+            HUD.Start();
+
             for (int i = 0; i < gameObjects.Count; i++)
             {
+                if (gameObjects[i].active) 
                 gameObjects[i].Start();
             }
             // TODO: use this.Content to load your game content here
@@ -106,12 +111,21 @@ namespace TilledEnginev1._0
             {
                 tiles[i].Update();
             }*/
-
+            //Console.Clear();
+          //  Debug.Write("===================================================================");
             for (int i = 0; i < gameObjects.Count; i++)
             {
-                gameObjects[i].Update();
+                if (gameObjects[i].active)
+                {
+                    gameObjects[i].Update();
+                  //  Debug.WriteLine("O" + gameObjects[i].name);
+                }
+                else
+                {
+                 //   Debug.WriteLine("F" + gameObjects[i].name);
+                }
             }
-
+            
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -126,21 +140,10 @@ namespace TilledEnginev1._0
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
             // TODO: Add your drawing code here
-            /*
-            spriteBatch.Draw(BasicShapes.Rect(1600, 900), new Rectangle(0, 0, 1600, 900), Color.Green);
-            spriteBatch.Draw(BasicShapes.Rect(800, 450, false, 15), new Vector2(0, 0), Color.Red);
-            Console.Write("CERCLE");
-            spriteBatch.Draw(BasicShapes.Circle(100), new Vector2(800, 450), Color.Yellow);
-            spriteBatch.Draw(BasicShapes.Circle(100, false, 5), new Vector2(1200, 450), Color.Yellow);*/
-            /*
-            for (int i = 0; i < tiles.Length; i++)
-            {
-                tiles[i].Draw();
-            }
 
-            if (menuToDraw != null)
-                menuToDraw.Draw();*/
 
+
+            int maxLayer = 0;
             for (int i = 0; i < gameObjects.Count; i++)
             {
                 gameObjects[i].Draw();
